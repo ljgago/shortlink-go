@@ -1,0 +1,18 @@
+package modules
+
+import "github.com/ljgago/shortlink-go/ui/components/icon"
+
+templ ThemeSwitch() {
+	<label x-data="theme" class="swap swap-rotate">
+		<input
+			type="checkbox"
+			class="theme-controller"
+			:checked="isDark"
+			@click="toggleTheme()"
+		/>
+		<!-- sun icon -->
+		@icon.Sun(icon.Props{Class: "swap-off size-6"})
+		<!-- moon icon -->
+		@icon.Moon(icon.Props{Class: "swap-on size-6"})
+	</label>
+}

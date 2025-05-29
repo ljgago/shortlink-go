@@ -1,0 +1,12 @@
+{
+  "name": "shortlink-go",
+  "module": "index.ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tailwindcss": "tailwindcss -i ./ui/assets/css/input.css -o ./ui/assets/css/output.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.8"
+  }
+}

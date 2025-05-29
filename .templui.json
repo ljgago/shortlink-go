@@ -1,0 +1,5 @@
+{
+  "componentsDir": "ui/components",
+  "utilsDir": "ui/utils",
+  "moduleName": "github.com/ljgago/shortlink-go"
+}

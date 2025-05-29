@@ -1,0 +1,18 @@
+package home
+
+import (
+	"github.com/go-chi/chi/v5"
+
+	"github.com/ljgago/shortlink-go/ui/layouts"
+	"github.com/ljgago/shortlink-go/ui/modules"
+)
+
+templ Home() {
+	@layouts.BaseLayout("ShortLink") {
+		@modules.ThemeSwitch()
+	}
+}
+
+func RegisterRoute(r chi.Router) {
+	r.Get("/", templ.Handler(Home()).ServeHTTP)
+}
