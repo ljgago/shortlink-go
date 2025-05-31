@@ -8,9 +8,7 @@ package modules
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "github.com/ljgago/shortlink-go/ui/components/icon"
-
-func ThemeSwitch() templ.Component {
+func Navbar() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -31,23 +29,23 @@ func ThemeSwitch() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<label x-data=\"theme\" class=\"swap swap-rotate\"><input type=\"checkbox\" class=\"theme-controller\" :checked=\"isDark\" @click=\"toggleTheme()\"><!-- sun icon -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"mx-6 text-xl grid place-items-center\"><ul class=\"flex items-center justify-center gap-x-6 h-16 md:w-[720px] w-full text-nowrap\"><li><!-- Github icon -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = icon.Sun(icon.Props{Class: "swap-off size-6"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Github("https://github.com/ljgago/shortlink-go").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<!-- moon icon -->")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</li><li><!-- Dark mode toggle -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = icon.Moon(icon.Props{Class: "swap-on size-6"}).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = ThemeSwitch().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</label>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</li></ul></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

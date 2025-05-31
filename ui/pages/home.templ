@@ -2,11 +2,8 @@ package pages
 
 import (
 	"github.com/ljgago/shortlink-go/ui/layouts"
-	"github.com/ljgago/shortlink-go/ui/modules"
 )
 
 templ Home() {
-	@layouts.BaseLayout("ShortLink") {
-		@modules.ThemeSwitch()
-	}
+	@layouts.AppLayout("Home")
 }

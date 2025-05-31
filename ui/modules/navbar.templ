@@ -1,0 +1,16 @@
+package modules
+
+templ Navbar() {
+	<nav class="mx-6 text-xl grid place-items-center">
+		<ul class="flex items-center justify-center gap-x-6 h-16 md:w-[720px] w-full text-nowrap">
+			<li>
+				<!-- Github icon -->
+				@Github("https://github.com/ljgago/shortlink-go")
+			</li>
+			<li>
+				<!-- Dark mode toggle -->
+				@ThemeSwitch()
+			</li>
+		</ul>
+	</nav>
+}

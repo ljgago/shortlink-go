@@ -1,0 +1,14 @@
+package layouts
+
+import "github.com/ljgago/shortlink-go/ui/modules"
+
+templ AppLayout(title string) {
+	@RootLayout(title) {
+		<header>
+			@modules.Navbar()
+		</header>
+		<main class="mx-auto mb-6 md:w-[720px] w-full pt-14">
+			{ children... }
+		</main>
+	}
+}

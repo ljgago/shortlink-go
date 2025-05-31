@@ -33,19 +33,19 @@ templ initScript() {
 	}
 }
 
-templ BaseLayout(title string) {
+templ RootLayout(title string) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html class="[scrollbar-gutter:stable]" lang="en">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>{ title }</title>
-			<link href="/assets/css/output.css" rel="stylesheet"/>
+			<link href="/assets/css/app.css" rel="stylesheet"/>
 			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 			@initScript()
 		</head>
-		<main>
+		<body>
 			{ children... }
-		</main>
+		</body>
 	</html>
 }
