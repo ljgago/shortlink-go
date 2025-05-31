@@ -73,19 +73,19 @@ vuln:
 
 # Live reload
 
+.PHONY: tailwind
+tailwind:
+	@npx @tailwindcss/cli -i ./ui/assets/css/input.css -o ./ui/assets/css/app.css --minify --watch
+
 .PHONY: templ
 templ: check-templ
 	@templ generate --watch --proxy="http://localhost:8080" --open-browser=false
 
-.PHONY: tailwind
-tailwind:
-	@bun run tailwindcss
-
-.PHONY: serve
-serve: check-air
+.PHONY: server
+server: check-air
 	@air \
 	--build.cmd "go build -o tmp/bin/shortlink" \
-	--build.bin "tmp/bin/shortlink" \
+	--build.bin "GO_ENV=dev tmp/bin/shortlink" \
 	--build.args_bin "serve" \
 	--build.delay "100" \
 	--build.exclude_dir "node_modules" \
@@ -93,16 +93,6 @@ serve: check-air
 	--build.stop_on_error "false" \
 	--misc.clean_on_exit false
 
-.PHONY: templ-sync
-templ-sync: check-air
-	@air \
-	--build.cmd "templ generate --notify-proxy" \
-	--build.bin "true" \
-	--build.delay "100" \
-	--build.exclude_dir "" \
-	--build.exclude_dir "node_modules,ui/assets" \
-	--build.include_ext "js,css"
-
-.PHONY: live
-live:
-	@make -j4 templ tailwind serve templ-sync
+.PHONY: dev
+dev:
+	@make -j3 tailwind templ server
