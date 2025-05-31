@@ -1,10 +1,10 @@
-// templui util templui.go - version: main installed by templui v0.71.0
+// templui util templui.go - version: v0.73.2 installed by templui v0.73.2
 package utils
 
 import (
-	"crypto/rand"
 	"fmt"
-	"maps"
+
+	"crypto/rand"
 
 	"github.com/a-h/templ"
 
@@ -41,11 +41,9 @@ func IfElse[T any](condition bool, trueValue T, falseValue T) T {
 func MergeAttributes(attrs ...templ.Attributes) templ.Attributes {
 	merged := templ.Attributes{}
 	for _, attr := range attrs {
-		maps.Copy(merged, attr)
-
-		// for k, v := range attr {
-		// 	merged[k] = v
-		// }
+		for k, v := range attr {
+			merged[k] = v
+		}
 	}
 	return merged
 }
