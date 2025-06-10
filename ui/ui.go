@@ -22,4 +22,6 @@ func RegisterRoutes(r chi.Router) {
 	})
 
 	r.Get("/", templ.Handler(pages.Home()).ServeHTTP)
+	r.Get("/_/login", templ.Handler(pages.Login()).ServeHTTP)
+	r.Get("/_/links", templ.Handler(pages.Links()).ServeHTTP)
 }

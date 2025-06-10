@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/httplog/v2"
 	"github.com/spf13/cobra"
 
 	"github.com/ljgago/shortlink-go/pkg/log"
@@ -38,6 +39,7 @@ func serveRun(cmd *cobra.Command, _ []string) {
 	// define all routes
 	r := chi.NewRouter()
 	r.Use(middleware.Recoverer)
+	r.Use(httplog.RequestLogger(log.Get()))
 	ui.RegisterRoutes(r)
 
 	// Run the server

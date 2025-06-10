@@ -5,5 +5,5 @@ import (
 )
 
 templ Home() {
-	@layouts.AppLayout("Home")
+	@layouts.AppLayout("Home", layouts.AppProps{CurrentUser: "demo"})
 }

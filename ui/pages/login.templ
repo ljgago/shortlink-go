@@ -1,0 +1,23 @@
+package pages
+
+import (
+	"github.com/ljgago/shortlink-go/ui/components/button"
+	"github.com/ljgago/shortlink-go/ui/layouts"
+)
+
+templ Login() {
+	@layouts.AppLayout("Shortlink - Login") {
+		<section class="mx-6 md:mx-0 grid place-items-center">
+			<div class="flex flex-col gap-2 w-full">
+				<h1 class="pb-14 text-center text-6xl">
+					Shortlink
+				</h1>
+				<div class="flex flex-col gap-6 mx-24 ">
+					@button.Button() {
+						Login ->
+					}
+				</div>
+			</div>
+		</section>
+	}
+}
