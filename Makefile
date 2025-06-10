@@ -85,7 +85,7 @@ templ: check-templ
 server: check-air
 	@air \
 	--build.cmd "go build -o tmp/bin/shortlink" \
-	--build.bin "GO_ENV=dev tmp/bin/shortlink" \
+	--build.full_bin "GO_ENV=dev tmp/bin/shortlink" \
 	--build.args_bin "serve" \
 	--build.delay "100" \
 	--build.exclude_dir "node_modules" \
