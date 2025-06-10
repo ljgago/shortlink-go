@@ -1,16 +1,86 @@
 package modules
 
-templ Navbar() {
+templ icons() {
+	<div class="flex items-center justify-center gap-x-6 h-16">
+		<li>
+			<!-- Github icon -->
+			@Github("https://github.com/ljgago/shortlink-go")
+		</li>
+		<li>
+			<!-- Dark mode toggle -->
+			@ThemeSwitch()
+		</li>
+	</div>
+}
+
+templ menu(currentUser, path string) {
+	if currentUser != "" {
+		<div class="grow"></div>
+		<div class="relative z-10 flex items-center justify-end gap-4">
+			<li class="text-[0.8125rem] text-zinc-900 dark:text-zinc-50 text-ellipsis overflow-hidden">
+				{ currentUser }
+			</li>
+			<li class="flex">
+				if path == "/_/links" {
+					<a
+						href="/"
+						class="text-[0.8125rem] text-zinc-900 dark:text-zinc-50 font-semibold hover:text-zinc-700 dark:hover:text-zinc-400 w-8 text-center"
+					>
+						Home
+					</a>
+				} else {
+					<a
+						href="/_/links"
+						class="text-[0.8125rem] text-zinc-900 dark:text-zinc-50 font-semibold hover:text-zinc-700 dark:hover:text-zinc-400 w-8 text-center"
+					>
+						Links
+					</a>
+				}
+			</li>
+			<li class="flex">
+				<a
+					href="/_/logout"
+					method="delete"
+					class="text-[0.8125rem] text-zinc-900 dark:text-zinc-50 font-semibold hover:text-zinc-700 dark:hover:text-zinc-400 text-ellipsis overflow-hidden"
+				>
+					Log out
+				</a>
+			</li>
+		</div>
+	}
+}
+
+templ simple() {
 	<nav class="mx-6 text-xl grid place-items-center">
 		<ul class="flex items-center justify-center gap-x-6 h-16 md:w-[720px] w-full text-nowrap">
-			<li>
-				<!-- Github icon -->
-				@Github("https://github.com/ljgago/shortlink-go")
-			</li>
-			<li>
-				<!-- Dark mode toggle -->
-				@ThemeSwitch()
-			</li>
+			@icons()
 		</ul>
 	</nav>
+}
+
+templ complex(currentUser, path string) {
+	<nav class="mx-6 text-xl grid place-items-center">
+		<ul class="flex justify-between items-center flex-col md:flex-row md:w-[720px] w-full text-nowrap">
+			@icons()
+			@menu(currentUser, path)
+		</ul>
+	</nav>
+}
+
+type NavbarProps struct {
+	CurrentUser string
+	Path        string
+}
+
+// <ul class="flex items-center justify-center gap-x-6 h-16 md:w-[720px] w-full text-nowrap">
+templ Navbar(props ...NavbarProps) {
+	{{ var p NavbarProps }}
+	if len(props) > 0 {
+		{{ p = props[0] }}
+	}
+	if p.CurrentUser == "" {
+		@simple()
+	} else {
+		@complex(p.CurrentUser, p.Path)
+	}
 }
