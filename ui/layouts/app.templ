@@ -2,10 +2,21 @@ package layouts
 
 import "github.com/ljgago/shortlink-go/ui/modules"
 
-templ AppLayout(title string) {
+type AppProps struct {
+	CurrentUser string
+	Path        string
+}
+
+templ AppLayout(title string, props ...AppProps) {
+	{{ var p AppProps }}
+	if len(props) > 0 {
+		{{ p = props[0] }}
+	}
 	@RootLayout(title) {
 		<header>
-			@modules.Navbar()
+			@modules.Navbar(modules.NavbarProps{
+				CurrentUser: p.CurrentUser,
+			})
 		</header>
 		<main class="mx-auto mb-6 md:w-[720px] w-full pt-14">
 			{ children... }
